@@ -1,7 +1,8 @@
 from dataclasses import dataclass
+from abc import ABC
 
 @dataclass
-class Categoria:
+class Categoria(ABC):
     nombre: str
     plazo_prestamo_dias: int
     tarifa_multa: int

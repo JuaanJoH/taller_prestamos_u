@@ -6,6 +6,7 @@ class Estudiante:
     nombre: str
     correo: str
     multas_pendientes: int = 0
+    prestamos_activos: int = 0
 
     # Getters
 
@@ -32,10 +33,7 @@ class Estudiante:
     def set_correo(self, correo: str) -> None:
         self.correo = correo
 
-    def set_multas_pendientes(self, multas_pendientes: int) -> None:
-        self.multas_pendientes = multas_pendientes
-
-    # Manejo de multas
+    # Logica de multas y prestamos
 
     def add_multas_pendientes(self) -> None:
         self.multas_pendientes += 1
@@ -43,4 +41,16 @@ class Estudiante:
     def sub_multas_pendientes(self) -> None:
         self.multas_pendientes -= 1
 
-    
+    def add_prestamos_activos(self) -> None:
+        self.prestamos_activos += 1
+
+    def sub_prestamos_activos(self) -> None:
+        self.prestamos_activos -= 1
+
+    def validar_multas_pendientes(self) -> None:
+        if self.multas_pendientes > 0:
+            raise ValueError("El estudiante tiene multas pendientes")
+
+    def validar_prestamos_activos(self) -> None:
+        if self.prestamos_activos > 2:
+            raise ValueError("El estudiante tiene prestamos activos")
