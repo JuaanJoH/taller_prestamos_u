@@ -52,5 +52,5 @@ class Estudiante:
             raise ValueError("El estudiante tiene multas pendientes")
 
     def validar_prestamos_activos(self) -> None:
-        if self.prestamos_activos > 2:
+        if self.prestamos_activos >= 2:
             raise ValueError("El estudiante tiene prestamos activos")

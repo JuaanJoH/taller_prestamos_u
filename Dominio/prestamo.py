@@ -5,12 +5,12 @@ from Dominio.equipo import Equipo
 
 @dataclass
 class Prestamo:
-    id: int
+    id: str
     estudiante: Estudiante
     equipo: Equipo
     fecha_prestamo: date
     fecha_limite: date
-    fecha_devolucion: date
+    fecha_devolucion: date = None
     multa_a_cobrar: int = 0
 
     def confirmar_prestamo(self) -> None:

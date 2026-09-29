@@ -1,4 +1,4 @@
-from Dominio import Categoria
+from Dominio.categoria import Categoria
 from dataclasses import dataclass
 
 @dataclass
