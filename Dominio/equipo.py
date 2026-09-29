@@ -35,4 +35,5 @@ class Equipo:
     def devolver(self, hay_daños: bool) -> None:
         if hay_daños:
             self.estado = "EN_MANTENIMIENTO"
+            print("Se devuelve equipo con daños")
         self.estado = "DISPONIBLE"

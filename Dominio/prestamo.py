@@ -11,7 +11,7 @@ class Prestamo:
     fecha_prestamo: date
     fecha_limite: date
     fecha_devolucion: date
-    multa_cobrada: int = 0
+    multa_a_cobrar: int = 0
 
     def confirmar_prestamo(self) -> None:
         if self.estudiante is None or self.equipo is None:
@@ -21,12 +21,15 @@ class Prestamo:
         self.equipo.prestar()
         self.estudiante.add_prestamos_activos()
 
-    def confirmar_devolucion(self) -> None:
-        self.equipo.devolver()
+    def confirmar_devolucion(self, fecha_devolucion: date, hay_daños: bool) -> None:
+        self.fecha_devolucion = fecha_devolucion
+        self.equipo.devolver(hay_daños)
         self.estudiante.sub_prestamos_activos()
+        dias_retraso = (self.fecha_devolucion - self.fecha_limite).days
+        if dias_retraso > 0:
+            self.estudiante.add_multas_pendientes()
+            self.multa_a_cobrar = dias_retraso * self.equipo.get_categoria().get_tarifa_multa()
+    
 
-    def calcular_fecha_limite(self) -> date:
-        self.fecha_limite = self.fecha_prestamo + timedelta(days=self.equipo.get_categoria().get_plazo_prestamo_dias())
-        return self.fecha_limite
         
         
